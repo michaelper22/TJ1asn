@@ -151,6 +151,27 @@ public final class Parser {
     TJ.output.incTreeDepth();
 
     /* ???????? */
+    accept(STATIC);
+    
+    if(getCurrentToken() == INT)
+    	accept(INT);
+    else if(getCurrentToken() == VOID)
+    	accept(VOID);
+    
+    if(getCurrentToken() == LBRACKET){
+    	accept(LBRACKET);
+    	accept(RBRACKET);
+    }
+    
+    if(getCurrentToken() == IDENT)
+        nextToken();
+    else
+    	throw new SourceFileErrorException("Method name expected");
+    
+    accept(LPAREN);
+    parameterDeclList();
+    accept(RPAREN);
+    compoundStmt();    
 
     TJ.output.decTreeDepth();
   }
@@ -196,6 +217,9 @@ public final class Parser {
     TJ.output.incTreeDepth();
 
     /* ???????? */
+    accept(LBRACE);
+    statement();
+    accept(RBRACE);
 
     TJ.output.decTreeDepth();
   }
