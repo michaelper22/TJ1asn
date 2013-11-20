@@ -1,0 +1,6 @@
+*.class
+*.txt
+*-original.java
+OutputFileHandler.java
+SourceFileErrorException.java
+TJ.java
